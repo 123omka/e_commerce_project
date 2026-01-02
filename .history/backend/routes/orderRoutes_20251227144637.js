@@ -1,0 +1,3 @@
+
+
+router.post("/checkout", authMiddleware, checkout);

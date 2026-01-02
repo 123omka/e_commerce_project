@@ -1,0 +1,47 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import api from "../api/baseUrl"
+
+export const fetchCart = createAsyncThunk(
+  "cart/fetch",
+  async () => (await api.get("/cart")).data
+);
+
+export const addToCart = createAsyncThunk(
+  "cart/add",
+  async (data) => {
+    await api.post("/cart/add", data);
+  }
+);
+
+export const updateCartItem = createAsyncThunk(
+  "cart/update",
+  async (data) => {
+    await api.put("/cart/update", data);
+  }
+);
+
+export const removeCartItem = createAsyncThunk(
+  "cart/remove",
+  async (id) => {
+    await api.delete(`/cart/remove/${id}`);
+  }
+);
+
+export const clearCart = createAsyncThunk(
+  "cart/clear",
+  async () => {
+    await ap.delete("/cart/clear");
+  }
+);
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: { items: [] },
+  extraReducers: (builder) => {
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
+  }
+});
+
+export default cartSlice.reducer;

@@ -1,0 +1,63 @@
+import React from "react";
+
+const products = [
+  {
+    id: 1,
+    name: "Blue T-Shirt",
+    price: "$20",
+    image: "https://via.placeholder.com/300",
+    discount: "10% OFF",
+  },
+  {
+    id: 2,
+    name: "Black Jacket",
+    price: "$45",
+    image: "https://via.placeholder.com/300",
+    discount: "",
+  },
+  {
+    id: 3,
+    name: "White Sneakers",
+    price: "$60",
+    image: "https://via.placeholder.com/300",
+    discount: "5% OFF",
+  },
+];
+
+const ProductListingBox = () => {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Products</h2>
+
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="bg-white border border-gray-200 shadow-sm rounded-lg p-4 flex flex-col items-center hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+          >
+            <div className="relative w-full mb-4">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-48 object-cover rounded-md"
+              />
+              {product.discount && (
+                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded">
+                  {product.discount}
+                </span>
+              )}
+            </div>
+
+            <h3 className="text-gray-800 font-medium mb-2 text-center">
+              {product.name}
+            </h3>
+
+            <p className="text-gray-900 font-bold mb-2">{product.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ProductListingBox;

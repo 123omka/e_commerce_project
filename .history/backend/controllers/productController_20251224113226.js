@@ -1,0 +1,40 @@
+import fs from "fs";
+import path from "path";
+import {
+ 
+  saveUploadedProducts
+} from "../models/productModel.js";
+
+export const uploadProduct = async (req, res) => {
+  try {
+    const {name,description,price,stock } = req.body;
+
+    const imageUrl = req.files["imageUrl"]?.[0]?.filename || null;
+
+
+    if (!imageUrl) {
+      return res
+        .status(400)
+        .json({ success: false, message: "ID and Address Proof required" });
+    }
+
+    // 🔥 IF NO RECORD — SAVE NEW DOCUMENTS
+    await saveUploadedProducts({
+        name,
+    description,
+    price   ,   
+    stock,
+    imageUrl
+    });
+
+    return res.json({
+      success: true,
+      message: "Documents uploaded successfully",
+    });
+  } catch (err) {
+    console.error("Upload Error:", err);
+    return res
+      .status(500)
+      .json({ success: false, message: "Server error" });
+  }
+};
