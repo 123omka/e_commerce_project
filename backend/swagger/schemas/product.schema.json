@@ -1,0 +1,62 @@
+{
+  "ProductBase": {
+    "type": "object",
+    "properties": {
+      "name": { "type": "string", "example": "iPhone 14" },
+      "price": { "type": "number", "example": 79999 },
+      "description": { "type": "string", "example": "Latest Apple iPhone" },
+      "stock": { "type": "integer", "example": 50 }
+    },
+    "required": ["name", "price", "description", "stock"]
+  },
+
+  "ProductCreateRequest": {
+    "allOf": [
+      { "$ref": "#/components/schemas/ProductBase" },
+      {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string", "format": "binary" }
+        },
+        "required": ["image"]
+      }
+    ]
+  },
+
+  "ProductUpdateRequest": {
+    "allOf": [
+      { "$ref": "#/components/schemas/ProductBase" },
+      {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string", "format": "binary" }
+        }
+      }
+    ]
+  },
+
+  "ProductItem": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "integer", "example": 1 },
+      "name": { "type": "string", "example": "iPhone 14" },
+      "price": { "type": "number", "example": 79999 },
+      "description": { "type": "string", "example": "Latest Apple iPhone" },
+      "stock": { "type": "integer", "example": 50 },
+      "image": { "type": "string", "example": "1684131123456.jpg" }
+    }
+  },
+
+  "ProductListResponse": {
+    "type": "object",
+    "properties": {
+      "products": {
+        "type": "array",
+        "items": { "$ref": "#/components/schemas/ProductItem" }
+      },
+      "total": { "type": "integer", "example": 100 },
+      "totalPages": { "type": "integer", "example": 10 },
+      "currentPage": { "type": "integer", "example": 1 }
+    }
+  }
+}

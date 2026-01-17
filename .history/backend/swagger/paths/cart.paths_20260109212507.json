@@ -1,0 +1,94 @@
+{
+  "/cart": {
+    "get": {
+      "tags": ["Cart"],
+      "summary": "Get all cart items for logged-in user",
+      "security": [{ "BearerAuth": [] }],
+      "responses": {
+        "200": {
+          "description": "Array of cart items",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CartItemListResponse"
+              }
+            }
+          }
+        },
+        "401": { "description": "Unauthorized" }
+      }
+    }
+  },
+
+  "/cart/add": {
+    "post": {
+      "tags": ["Cart"],
+      "summary": "Add item to cart",
+      "security": [{ "BearerAuth": [] }],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/CartAddRequest" }
+          }
+        }
+      },
+      "responses": {
+        "200": { "description": "Added to cart" },
+        "401": { "description": "Unauthorized" }
+      }
+    }
+  },
+
+  "/cart/update": {
+    "put": {
+      "tags": ["Cart"],
+      "summary": "Update cart item quantity",
+      "security": [{ "BearerAuth": [] }],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/CartUpdateRequest" }
+          }
+        }
+      },
+      "responses": {
+        "200": { "description": "Quantity updated" },
+        "401": { "description": "Unauthorized" }
+      }
+    }
+  },
+
+  "/cart/remove/{id}": {
+    "delete": {
+      "tags": ["Cart"],
+      "summary": "Remove item from cart",
+      "security": [{ "BearerAuth": [] }],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": { "type": "integer" }
+        }
+      ],
+      "responses": {
+        "200": { "description": "Item removed" },
+        "401": { "description": "Unauthorized" }
+      }
+    }
+  },
+
+  "/cart/clear": {
+    "delete": {
+      "tags": ["Cart"],
+      "summary": "Clear all cart items",
+      "security": [{ "BearerAuth": [] }],
+      "responses": {
+        "200": { "description": "Cart cleared" },
+        "401": { "description": "Unauthorized" }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "CartItemBase": {
+    "type": "object",
+    "properties": {
+      "productId": { "type": "integer", "example": 1 },
+      "name": { "type": "string", "example": "iPhone 14" },
+      "price": { "type": "number", "example": 79999 },
+      "imageUrl": { "type": "string", "example": "1684131123456.jpg" },
+      "quantity": { "type": "integer", "example": 2 }
+    }
+  },
+
+  "CartItemListResponse": {
+    "type": "array",
+    "items": { "$ref": "#/components/schemas/CartItemBase" }
+  },
+
+  "CartAddRequest": {
+    "type": "object",
+    "properties": {
+      "productId": { "type": "integer", "example": 1 },
+      "quantity": { "type": "integer", "example": 2 }
+    },
+    "required": ["productId", "quantity"]
+  },
+
+  "CartUpdateRequest": {
+    "type": "object",
+    "properties": {
+      "cartItemId": { "type": "integer", "example": 1 },
+      "quantity": { "type": "integer", "example": 3 }
+    },
+    "required": ["cartItemId", "quantity"]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "/signup": {
+    "post": {
+      "tags": ["Auth"],
+      "summary": "Register new user",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/RegisterRequest"
+            }
+          }
+        }
+      },
+      "responses": {
+        "201": {
+          "description": "User registered",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Validation error",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErrorResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/login": {
+    "post": {
+      "tags": ["Auth"],
+      "summary": "Login user",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/LoginRequest"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Login success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/profile": {
+    "get": {
+      "tags": ["Auth"],
+      "summary": "Get user profile",
+      "security": [{ "bearerAuth": [] }],
+      "responses": {
+        "200": {
+          "description": "Profile data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/profile/update": {
+    "put": {
+      "tags": ["Auth"],
+      "summary": "Update profile",
+      "security": [{ "bearerAuth": [] }],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateProfileRequest"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Profile updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

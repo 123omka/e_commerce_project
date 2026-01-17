@@ -1,0 +1,17 @@
+{
+  "CheckoutRequest": {
+    "type": "object",
+    "properties": {
+      "address": { "type": "string", "example": "123 Main Street" },
+      "phone": { "type": "string", "example": "+919876543210" }
+    },
+    "required": ["name", "address", "phone"]
+  },
+
+  "CheckoutResponse": {
+    "type": "object",
+    "properties": {
+      "message": { "type": "string", "example": "Order placed successfully" }
+    }
+  }
+}

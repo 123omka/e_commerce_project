@@ -1,0 +1,54 @@
+{
+  "RegisterRequest": {
+    "type": "object",
+    "required": ["name", "email", "password"],
+    "properties": {
+      "name": { "type": "string" },
+      "email": { "type": "string", "format": "email" },
+      "password": { "type": "string", "format": "password" }
+    }
+  },
+
+  "RegisterResponse": {
+    "type": "object",
+    "properties": {
+      "success": { "type": "boolean" },
+      "userId": { "type": "integer" }
+    }
+  },
+
+  "LoginRequest": {
+    "type": "object",
+    "required": ["email", "password"],
+    "properties": {
+      "email": { "type": "string", "format": "email" },
+      "password": { "type": "string", "format": "password" }
+    }
+  },
+
+  "LoginResponse": {
+    "type": "object",
+    "properties": {
+      "token": { "type": "string" }
+    }
+  },
+
+  "User": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "integer" },
+      "name": { "type": "string" },
+      "email": { "type": "string" },
+      "mobile": { "type": "string", "nullable": true },
+      "created_at": { "type": "string", "format": "date-time" }
+    }
+  },
+
+  "UpdateProfileRequest": {
+    "type": "object",
+    "properties": {
+      "name": { "type": "string" },
+      "mobile": { "type": "string" }
+    }
+  }
+}
